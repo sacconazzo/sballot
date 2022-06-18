@@ -1,4 +1,4 @@
-# Quorum Voting WebApp
+# Quorum Ballot WebApp
 
 ReactJS MaterialUI interact with private blockchain (webapp + mobile app with Capacitor)
 
