@@ -30,7 +30,7 @@
     "prod": "yarn build && yarn deploy",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "android": "yarn build && npx cap sync"
+    "android:sync": "yarn build && yarn cap sync"
   },
   "eslintConfig": {
     "extends": [

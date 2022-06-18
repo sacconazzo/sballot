@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">sBallottaggio</string>
+    <string name="title_activity_main">sBallottaggio</string>
+    <string name="package_name">tech.giona.sballot</string>
+    <string name="custom_url_scheme">tech.giona.sballot</string>
+</resources>

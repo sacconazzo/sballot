@@ -1,0 +1,12 @@
+{
+  "appId": "tech.giona.sballot",
+  "appName": "sBallottaggio",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "build",
+  "cordova": {},
+  "server": {
+    "hostname": "giona.tech",
+    "androidScheme": "https"
+  }
+}
