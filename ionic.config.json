@@ -1,0 +1,7 @@
+{
+    "name": "sballot",
+    "integrations": {
+      "capacitor": {}
+    },
+    "type": "react"
+  }

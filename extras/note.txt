@@ -1,0 +1,20 @@
+## Refs
+capacitor
+https://medium.com/how-to-react/convert-your-existing-react-js-app-to-android-or-ios-app-using-the-ionic-capacitor-a127deda75bd
+
+per certificati in android
+https://medium.com/@johnmarktagle/using-self-signed-ssl-in-android-nougat-6d59593a3b6f
+
+per icon e splashscreeen
+https://capacitorjs.com/docs/guides/splash-screens-and-icons
+
+configurazione certificati
+Manifest: android:networkSecurityConfig="@xml/network_security_config"
+e file crt in formato der
+openssl x509 -outform der -in certificate.pem -out certificate.der
+
+dark mode
+check MainActivity Configuration events e passaggio info su UserAgent
+
+metamask
+window.ethereum.request({ method: 'eth_accounts' })
