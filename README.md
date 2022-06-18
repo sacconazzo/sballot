@@ -12,10 +12,10 @@ https://api.giona.tech
 
 https://quorum.giona.tech
 
-## Learn More
+## Refs
 
-### Refs
+### WebApp
+https://sballot.giona.tech
 
-webapp: https://sballot.giona.tech
-
-play store: https://play.google.com/store/apps/details?id=tech.giona.sballot
+### Mobile
+https://play.google.com/store/apps/details?id=tech.giona.sballot
