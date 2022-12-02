@@ -31,7 +31,7 @@
     "prod": "yarn build && yarn deploy",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "cap:sync": "yarn build && yarn cap sync",
+    "sync": "yarn build && yarn cap sync",
     "android": "yarn cap open android",
     "ios": "yarn cap open ios"
   },

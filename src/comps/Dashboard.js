@@ -56,7 +56,7 @@ function Copyright() {
 const drawerWidth = 240
 //const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   '@global': {
     '*::-webkit-scrollbar': {
       width: '0.8em',
@@ -91,6 +91,9 @@ const useStyles = makeStyles((theme) => ({
     ...theme.mixins.toolbar,
   },
   appBar: {
+    paddingTop: `env(safe-area-inset-top)`, // ios notch
+    paddingLeft: `env(safe-area-inset-left)`, // ios notch
+    paddingRight: `env(safe-area-inset-right)`, // ios notch
     zIndex: theme.zIndex.drawer + 1,
     transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,
@@ -210,7 +213,7 @@ export default function Dashboard() {
           type: prefersDarkMode ? 'dark' : 'light',
         },
       }),
-    [prefersDarkMode]
+    [prefersDarkMode],
   )
   const classes = useStyles()
   const [open, setOpen] = React.useState(false)
@@ -227,13 +230,13 @@ export default function Dashboard() {
     freeVotes = _freeVotes
   }
 
-  const votesChanged = (_freeVotes) => {
+  const votesChanged = _freeVotes => {
     freeVotes = _freeVotes
   }
 
   const [loaded, setLoaded] = React.useState(0)
   const [instanceOk, setInstanceOk] = React.useState(false)
-  const setInstance = (_bool) => {
+  const setInstance = _bool => {
     setInstanceOk(_bool)
   }
   const [refresh, setRefresh] = React.useState(0)
@@ -253,11 +256,11 @@ export default function Dashboard() {
           json.contendenti.sort((a, b) => b.voti - a.voti)
           ballot = json
           ballot.tot = 0
-          ballot.contendenti.forEach((row) => {
+          ballot.contendenti.forEach(row => {
             row.voti = Number(row.voti)
             ballot.tot += row.voti
           })
-          ballot.contendenti.map((row) => {
+          ballot.contendenti.map(row => {
             if (row.voti / ballot.tot >= 0.1) row.perc = Math.round((row.voti / ballot.tot) * 100, 2) + '%'
             return row
           })
@@ -288,13 +291,7 @@ export default function Dashboard() {
         <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
           <Toolbar className={classes.toolbar}>
             <BrowserView>
-              <IconButton
-                edge="start"
-                color="inherit"
-                aria-label="open drawer"
-                onClick={handleDrawerOpen}
-                className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
-              >
+              <IconButton edge="start" color="inherit" aria-label="open drawer" onClick={handleDrawerOpen} className={clsx(classes.menuButton, open && classes.menuButtonHidden)}>
                 <MenuIcon />
               </IconButton>
             </BrowserView>
@@ -321,7 +318,7 @@ export default function Dashboard() {
             <List>
               <MainListItems
                 selected={selected}
-                setSelected={(view) => {
+                setSelected={view => {
                   setSelected(view)
                 }}
               />
@@ -331,44 +328,16 @@ export default function Dashboard() {
         <main className={classes.content}>
           <div className={classes.appBarSpacer} />
           <Container maxWidth="lg" className={classes.container}>
-            {selected === '1' && (
-              <Main
-                ballot={ballot}
-                stats={stats}
-                statsChanged={statsChanged}
-                fixedHeightPaper={fixedHeightPaper}
-                fixedHeightPaperPlus={fixedHeightPaperPlus}
-                classes={classes}
-              />
-            )}
-            {selected === '2' && (
-              <Accounts
-                ballot={ballot}
-                instanceOk={instanceOk}
-                onChangeVotes={votesChanged}
-                fixedHeightPaper={fixedHeightPaper}
-                classes={classes}
-              />
-            )}
-            {selected === '3' && (
-              <Contracts
-                ballot={ballot}
-                instanceOk={instanceOk}
-                fixedHeightPaper={fixedHeightPaper}
-                classes={classes}
-              />
-            )}
+            {selected === '1' && <Main ballot={ballot} stats={stats} statsChanged={statsChanged} fixedHeightPaper={fixedHeightPaper} fixedHeightPaperPlus={fixedHeightPaperPlus} classes={classes} />}
+            {selected === '2' && <Accounts ballot={ballot} instanceOk={instanceOk} onChangeVotes={votesChanged} fixedHeightPaper={fixedHeightPaper} classes={classes} />}
+            {selected === '3' && <Contracts ballot={ballot} instanceOk={instanceOk} fixedHeightPaper={fixedHeightPaper} classes={classes} />}
             <Box pt={4}>
               <Copyright />
             </Box>
           </Container>
           <MobileView>
             <Box boxShadow={3} className={classes.bottom}>
-              <BottomNavigation
-                showLabels
-                value={Number(selected) - 1}
-                onChange={(event, next) => setSelected((next + 1).toString())}
-              >
+              <BottomNavigation showLabels value={Number(selected) - 1} onChange={(event, next) => setSelected((next + 1).toString())}>
                 <BottomNavigationAction label="Dashboard" icon={<DashboardIcon />} />
                 <BottomNavigationAction label="Accounts" icon={<PeopleIcon />} />
                 <BottomNavigationAction label="Ballots" icon={<BallotIcon />} />
@@ -388,7 +357,7 @@ export default function Dashboard() {
 
 function IconVotes(props) {
   const classes = useStyles()
-  const logged = useSelector((state) => state.logging)
+  const logged = useSelector(state => state.logging)
   const dispatch = useDispatch()
   const [vote, setVote] = React.useState(false)
   const [loading, setloading] = React.useState(ballot.title === '...')
@@ -399,7 +368,7 @@ function IconVotes(props) {
   return (
     <>
       {false && (
-        <Button variant="contained" color="primary" onClick={(e) => dispatch(loginUser('pino'))}>
+        <Button variant="contained" color="primary" onClick={e => dispatch(loginUser('pino'))}>
           User {logged.user}
         </Button>
       )}
@@ -431,13 +400,7 @@ function IconVotes(props) {
         </Zoom>
       )}
       <Vote ballot={props.ballot} open={vote} onClose={() => setVote(false)} />
-      <Loading
-        ballot={props.ballot}
-        instanceOk={props.instanceOk}
-        open={loading}
-        message={loadingMessage}
-        onClose={() => setloading(false)}
-      />
+      <Loading ballot={props.ballot} instanceOk={props.instanceOk} open={loading} message={loadingMessage} onClose={() => setloading(false)} />
     </>
   )
 }
