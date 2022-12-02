@@ -4,8 +4,9 @@
   "private": true,
   "homepage": "https://sballot.giona.tech",
   "dependencies": {
-    "@capacitor/android": "^2.4.2",
-    "@capacitor/core": "^2.4.2",
+    "@capacitor/android": "^4.0.0",
+    "@capacitor/core": "^4.0.0",
+    "@capacitor/ios": "^4.0.0",
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
     "@material-ui/lab": "^4.0.0-alpha.56",
@@ -30,7 +31,9 @@
     "prod": "yarn build && yarn deploy",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "android:sync": "yarn build && yarn cap sync"
+    "cap:sync": "yarn build && yarn cap sync",
+    "android": "yarn cap open android",
+    "ios": "yarn cap open ios"
   },
   "eslintConfig": {
     "extends": [
@@ -51,7 +54,7 @@
     ]
   },
   "devDependencies": {
-    "@capacitor/cli": "2.4.2",
+    "@capacitor/cli": "^4.0.0",
     "terser-brunch": "^4.0.0"
   }
 }
