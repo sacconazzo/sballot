@@ -92,8 +92,6 @@ const useStyles = makeStyles(theme => ({
   },
   appBar: {
     paddingTop: `env(safe-area-inset-top)`, // ios notch
-    paddingLeft: `env(safe-area-inset-left)`, // ios notch
-    paddingRight: `env(safe-area-inset-right)`, // ios notch
     zIndex: theme.zIndex.drawer + 1,
     transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,
@@ -144,7 +142,7 @@ const useStyles = makeStyles(theme => ({
     overflow: 'auto',
   },
   container: {
-    paddingTop: theme.spacing(4),
+    paddingTop: isMobile ? theme.spacing(7) : theme.spacing(4),
     paddingBottom: isMobile ? theme.spacing(10) : theme.spacing(4),
   },
   paper: {
@@ -167,6 +165,7 @@ const useStyles = makeStyles(theme => ({
     position: 'fixed',
     bottom: '0',
     width: '100%',
+    // paddingBottom: `env(safe-area-inset-bottom)`,
   },
 }))
 
@@ -336,7 +335,7 @@ export default function Dashboard() {
             </Box>
           </Container>
           <MobileView>
-            <Box boxShadow={3} className={classes.bottom}>
+            <Box boxShadow={3} position="absolute" className={classes.bottom}>
               <BottomNavigation showLabels value={Number(selected) - 1} onChange={(event, next) => setSelected((next + 1).toString())}>
                 <BottomNavigationAction label="Dashboard" icon={<DashboardIcon />} />
                 <BottomNavigationAction label="Accounts" icon={<PeopleIcon />} />
