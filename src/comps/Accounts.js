@@ -1,33 +1,33 @@
-import React, { useEffect } from "react"
-import clsx from "clsx"
-import { makeStyles } from "@material-ui/core/styles"
-import Grid from "@material-ui/core/Grid"
-import Table from "@material-ui/core/Table"
-import TableBody from "@material-ui/core/TableBody"
-import TableCell from "@material-ui/core/TableCell"
-import TableHead from "@material-ui/core/TableHead"
-import TableRow from "@material-ui/core/TableRow"
-import Paper from "@material-ui/core/Paper"
-import Enabler from "./Enabler"
-import AddAccount from "./AddAccount"
-import Fab from "@material-ui/core/Fab"
-import AddIcon from "@material-ui/icons/Add"
-import ExitToAppIcon from "@material-ui/icons/ExitToApp"
-import Tooltip from "@material-ui/core/Tooltip"
-import Zoom from "@material-ui/core/Zoom"
-import { connect } from "react-redux"
-import { loginUser, logoffUser } from "../redux"
-import { isMobile } from "react-device-detect"
+import React, { useEffect } from 'react'
+import clsx from 'clsx'
+import { makeStyles } from '@material-ui/core/styles'
+import Grid from '@material-ui/core/Grid'
+import Table from '@material-ui/core/Table'
+import TableBody from '@material-ui/core/TableBody'
+import TableCell from '@material-ui/core/TableCell'
+import TableHead from '@material-ui/core/TableHead'
+import TableRow from '@material-ui/core/TableRow'
+import Paper from '@material-ui/core/Paper'
+import Enabler from './Enabler'
+import AddAccount from './AddAccount'
+import Fab from '@material-ui/core/Fab'
+import AddIcon from '@material-ui/icons/Add'
+import ExitToAppIcon from '@material-ui/icons/ExitToApp'
+import Tooltip from '@material-ui/core/Tooltip'
+import Zoom from '@material-ui/core/Zoom'
+import { connect } from 'react-redux'
+import { loginUser, logoffUser } from '../redux'
+import { isMobile } from 'react-device-detect'
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   depositContext: {
     flex: 1,
   },
   paper: {
     padding: theme.spacing(2),
-    display: "flex",
-    overflow: "auto",
-    flexDirection: "column",
+    display: 'flex',
+    overflow: 'auto',
+    flexDirection: 'column',
   },
   fixedHeight: {
     minHeight: 140,
@@ -35,38 +35,38 @@ const useStyles = makeStyles((theme) => ({
   },
   fab: {
     zIndex: 1,
-    position: "absolute",
+    position: 'absolute',
     bottom: theme.spacing(2),
     right: theme.spacing(2),
-    marginBottom: isMobile ? "55px" : "0px",
+    marginBottom: isMobile ? '55px' : '0px',
   },
   seeMore: {
     marginTop: theme.spacing(3),
   },
   backdrop: {
     zIndex: theme.zIndex.drawer + 1,
-    color: "#fff",
+    color: '#fff',
   },
   table: {
-    display: "block",
+    display: 'block',
     //height: "540px",
-    maxHeight: isMobile ? `calc(100vh - 16.3rem)` : `calc(100vh - 13.3rem)`,
-    overflowY: "scroll",
+    maxHeight: isMobile ? 'calc(100vh - 16.3rem)' : 'calc(100vh - 13.3rem)',
+    overflowY: 'scroll',
   },
   rowH: {
-    maxWidth: isMobile ? "20vw" : "",
+    maxWidth: isMobile ? '20vw' : '',
   },
   row: {
-    maxWidth: isMobile ? "20vw" : "",
-    wordWrap: "break-word",
-    userSelect: "text",
+    maxWidth: isMobile ? '20vw' : '',
+    wordWrap: 'break-word',
+    userSelect: 'text',
   },
 }))
 
-let accounts = JSON.parse(localStorage.getItem("accounts")) || []
+let accounts = JSON.parse(localStorage.getItem('accounts')) || []
 let timeout
 
-const Accounts = (props) => {
+const Accounts = props => {
   const classes = useStyles()
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight)
 
@@ -75,36 +75,37 @@ const Accounts = (props) => {
 
   const updateAccounts = async () => {
     try {
-      const response = await fetch("https://api.giona.tech/quorum/account/list", {
-        method: "GET",
-        credentials: "include",
+      const response = await fetch('https://api.giona.tech/quorum/account/list', {
+        method: 'GET',
+        credentials: 'include',
         headers: {
-          "Content-Type": "application/json",
-          quorum: "net",
+          'Content-Type': 'application/json',
+          quorum: 'net',
         },
       })
       const json = await response.json()
       let newAccounts = []
       json.forEach((row, id) => {
-        const found = accounts.find((found) => found.account === row.account)
-        const voto = props.ballot.contendenti.find((found) => found.id === Number(row.vote))
+        const found = accounts.find(found => found.account === row.account)
+        const voto = props.ballot.contendenti.find(found => found.id === Number(row.vote))
         newAccounts.unshift({
           id: id,
           account: row.account,
           intern: row.intern,
-          alias: found ? found.alias : "",
+          alias: found ? found.alias : '',
           enabled: row.right,
           voted: row.voted,
-          vote: row.voted ? voto.nome : "",
+          vote: row.voted ? voto.nome : '',
         })
       })
       accounts = newAccounts
-      localStorage.setItem("accounts", JSON.stringify(accounts))
+      localStorage.setItem('accounts', JSON.stringify(accounts))
       let freeVotes = 0
-      json.forEach((row) => {
+      json.forEach(row => {
         if (row.right && !row.voted) freeVotes += 1
       })
       props.onChangeVotes(freeVotes)
+      // eslint-disable-next-line no-empty
     } catch (e) {}
     setAccounts(changeAccounts + 1)
   }
@@ -114,7 +115,6 @@ const Accounts = (props) => {
     timeout = setTimeout(() => {
       setRefresh(refresh + 1)
     }, 7000)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [refresh])
 
   useEffect(() => {
@@ -148,14 +148,14 @@ const Accounts = (props) => {
     setRefresh(refresh + 1)
   }
 
-  const handleChangeAccounts = async (account) => {
-    accounts.map((row) => {
+  const handleChangeAccounts = async account => {
+    accounts.map(row => {
       if (row.account === account) {
         row.enabled = true
       }
       return row
     })
-    localStorage.setItem("accounts", JSON.stringify(accounts))
+    localStorage.setItem('accounts', JSON.stringify(accounts))
     setAccounts(changeAccounts + 1)
   }
 
@@ -170,7 +170,7 @@ const Accounts = (props) => {
   return (
     <>
       {window.navigator.onLine && props.instanceOk && (
-        <Zoom in={true} style={{ transitionDelay: true ? "0ms" : "0ms" }}>
+        <Zoom in={true} style={{ transitionDelay: '0ms' }}>
           <Fab color="secondary" aria-label="add" onClick={handleClickOpen} className={classes.fab}>
             <AddIcon />
           </Fab>
@@ -235,14 +235,14 @@ const Accounts = (props) => {
     </>
   )
 }
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     logging: state.logging,
   }
 }
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
-    loginUser: (user) => dispatch(loginUser(user)),
+    loginUser: user => dispatch(loginUser(user)),
     logoffUser: () => dispatch(logoffUser()),
   }
 }

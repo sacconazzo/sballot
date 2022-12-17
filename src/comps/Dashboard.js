@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 import React from 'react'
 import clsx from 'clsx'
 import { makeStyles, createMuiTheme } from '@material-ui/core/styles'
@@ -91,7 +93,7 @@ const useStyles = makeStyles(theme => ({
     ...theme.mixins.toolbar,
   },
   appBar: {
-    paddingTop: `env(safe-area-inset-top)`, // ios notch
+    paddingTop: 'env(safe-area-inset-top)', // ios notch
     zIndex: theme.zIndex.drawer + 1,
     transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,
@@ -275,7 +277,6 @@ export default function Dashboard() {
       }, 5000)
     }
     fetchData()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [refresh])
 
   const [selected, setSelected] = React.useState('1')
@@ -367,7 +368,7 @@ function IconVotes(props) {
   return (
     <>
       {false && (
-        <Button variant="contained" color="primary" onClick={e => dispatch(loginUser('pino'))}>
+        <Button variant="contained" color="primary" onClick={() => dispatch(loginUser('pino'))}>
           User {logged.user}
         </Button>
       )}

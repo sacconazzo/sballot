@@ -1,0 +1,36 @@
+{
+  "extends": ["prettier", "eslint:recommended", "plugin:import/errors", "plugin:react/recommended", "plugin:jest-dom/recommended", "plugin:jsx-a11y/recommended", "plugin:testing-library/react"],
+  "plugins": ["prettier", "react", "import", "jsx-a11y", "testing-library", "jest-dom"],
+  "rules": {
+    "react/prop-types": 0,
+    "indent": ["error", 2],
+    "linebreak-style": 1,
+    "quotes": ["error", "single"],
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }], // To allow importing .jsx files
+    "no-console": 1,
+    "no-unused-vars": 1,
+    "import/no-unresolved": 2,
+    "no-undefined": 2,
+    "react/jsx-uses-vars": 2,
+    "react/react-in-jsx-scope": "off"
+  },
+  "parserOptions": {
+    "ecmaVersion": 2021,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "env": {
+    "jest": true,
+    "browser": true, // Enables browser globals like window and document
+    "amd": true, // Enables require() and define() as global variables as per the amd spec.
+    "node": true,
+    "es2021": true
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  }
+}

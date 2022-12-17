@@ -1,8 +1,8 @@
-import { render, screen } from '@testing-library/react';
-import Dashboard from './Dashboard';
+import { render, screen } from '@testing-library/react'
+import Winner from './comps/Winner'
 
-test('renders learn react link', () => {
-  render(<Dashboard />);
-  const linkElement = screen.getByText(/sBallottaggio/i);
-  expect(linkElement).toBeInTheDocument();
-});
+test('First test', async () => {
+  render(<Winner ballot={{ isOpen: true }} />)
+  const linkElement = screen.getAllByText(/Winning/i)
+  expect(linkElement[0]).toBeVisible()
+})

@@ -1,7 +1,7 @@
-import React from "react"
-import { makeStyles } from "@material-ui/core/styles"
-import Typography from "@material-ui/core/Typography"
-import Title from "./Title"
+import React from 'react'
+import { makeStyles } from '@material-ui/core/styles'
+import Typography from '@material-ui/core/Typography'
+import Title from './Title'
 
 const useStyles = makeStyles({
   depositContext: {
@@ -13,7 +13,7 @@ export default function Winners(props) {
   const classes = useStyles()
   return (
     <React.Fragment>
-      <Title>{props.ballot.isOpen ? "Winning" : "Winner"}</Title>
+      <Title>{props.ballot.isOpen ? 'Winning' : 'Winner'}</Title>
       <Typography color="textSecondary" variant="h4" className={classes.depositContext}>
         {props.ballot.title}
       </Typography>

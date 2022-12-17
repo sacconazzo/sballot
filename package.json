@@ -1,6 +1,6 @@
 {
   "name": "sballot",
-  "version": "1.2.5",
+  "version": "1.2.6",
   "private": true,
   "homepage": "https://sballot.giona.tech",
   "dependencies": {
@@ -16,6 +16,14 @@
     "@testing-library/user-event": "^12.1.10",
     "cordova-res": "^0.15.4",
     "dotenv": "^16.0.1",
+    "eslint": "7.11.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jest-dom": "^4.0.3",
+    "eslint-plugin-jsx-a11y": "^6.6.1",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.31.11",
+    "eslint-plugin-testing-library": "^5.9.1",
     "ftp-deploy": "^2.3.8",
     "react": "^17.0.1",
     "react-device-detect": "^1.14.0",
@@ -33,6 +41,8 @@
     "deploy": "node -r dotenv/config deploy",
     "prod": "yarn build && yarn deploy",
     "test": "react-scripts test",
+    "lint": "eslint \"src/**/*.{js,jsx}\"",
+    "lint:fix": "eslint \"src/**/*.{js,jsx}\" --fix",
     "eject": "react-scripts eject",
     "sync": "yarn build && yarn cap sync",
     "res": "npx cordova-res --skip-config --copy",
@@ -45,6 +55,11 @@
       "react-app/jest"
     ]
   },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
   "browserslist": {
     "production": [
       ">0.2%",
@@ -56,5 +71,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "main": "index.js",
+  "repository": "https://github.com/sacconazzo/sballot.git",
+  "author": "giona.tech",
+  "license": "MIT"
 }

@@ -1,7 +1,7 @@
-import React from "react"
-import { BarChart, Bar, XAxis, ResponsiveContainer, LabelList } from "recharts"
-import { isMobile } from "react-device-detect"
-import Title from "./Title"
+import React from 'react'
+import { BarChart, Bar, XAxis, ResponsiveContainer, LabelList } from 'recharts'
+import { isMobile } from 'react-device-detect'
+import Title from './Title'
 
 export default function Chart(props) {
   const data = Object.assign([], props.ballot.contendenti)
