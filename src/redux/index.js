@@ -1,13 +1,13 @@
-import { combineReducers, createStore } from "redux"
+import { combineReducers, createStore } from 'redux'
 
 // actions.js
-export const loginUser = (user) => ({
-  type: "LOGIN",
+export const loginUser = user => ({
+  type: 'LOGIN',
   user,
 })
 
 export const logoffUser = () => ({
-  type: "LOGOFF",
+  type: 'LOGOFF',
 })
 
 // reducers.js
@@ -16,18 +16,18 @@ const initialState = {
 }
 export const logging = (state = initialState, action) => {
   switch (action.type) {
-    case "LOGIN":
-      return {
-        ...state,
-        user: action.user
-      }
-    case "LOGOFF":
-      return {
-        ...state,
-        user: null
-      }
-    default:
-      return state
+  case 'LOGIN':
+    return {
+      ...state,
+      user: action.user,
+    }
+  case 'LOGOFF':
+    return {
+      ...state,
+      user: null,
+    }
+  default:
+    return state
   }
 }
 

@@ -9,7 +9,7 @@ import TableRow from '@material-ui/core/TableRow'
 import Typography from '@material-ui/core/Typography'
 import Title from './Title'
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   table: {
     display: 'block',
     //height: "540px",
@@ -34,7 +34,7 @@ export default function Details(props) {
             </TableRow>
           </TableHead>
           <TableBody>
-            {props.ballot.contendenti.map((row) => (
+            {props.ballot.contendenti.map(row => (
               <TableRow key={row.id}>
                 <TableCell>{row.nome}</TableCell>
                 <TableCell align="right">{row.voti}</TableCell>

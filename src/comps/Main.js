@@ -1,10 +1,10 @@
-import React from "react"
-import Grid from "@material-ui/core/Grid"
-import Paper from "@material-ui/core/Paper"
-import Chart from "./Chart"
-import Winner from "./Winner"
-import Details from "./Details"
-import Stats from "./Stats"
+import React from 'react'
+import Grid from '@material-ui/core/Grid'
+import Paper from '@material-ui/core/Paper'
+import Chart from './Chart'
+import Winner from './Winner'
+import Details from './Details'
+import Stats from './Stats'
 
 export default function Main(props) {
   return (

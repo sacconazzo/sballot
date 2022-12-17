@@ -14,7 +14,7 @@ import Select from '@material-ui/core/Select'
 import FormControl from '@material-ui/core/FormControl'
 import CircularProgress from '@material-ui/core/CircularProgress'
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   form: {
     display: 'flex',
     flexDirection: 'column',
@@ -115,7 +115,7 @@ export default function Vote(props) {
             <FormControl className={classes.formControl}>
               <Select
                 value={form.select}
-                onChange={(e) =>
+                onChange={e =>
                   setForm({
                     account: form.account,
                     password: form.password,
@@ -133,13 +133,13 @@ export default function Vote(props) {
               <TextField
                 htmlFor="max-width"
                 autoComplete="new-password"
-                onKeyDown={(e) => {
+                onKeyDown={e => {
                   if (e.keyCode === 13) {
                     create()
                   }
                 }}
                 value={form.account}
-                onChange={(e) =>
+                onChange={e =>
                   setForm({
                     account: e.target.value,
                     password: form.password,
@@ -150,14 +150,14 @@ export default function Vote(props) {
               />
               <TextField
                 autoComplete="new-password"
-                onKeyDown={(e) => {
+                onKeyDown={e => {
                   if (e.keyCode === 13) {
                     create()
                   }
                 }}
                 value={atob(form.password)}
                 type="password"
-                onChange={(e) =>
+                onChange={e =>
                   setForm({
                     account: form.account,
                     password: btoa(e.target.value),
@@ -181,12 +181,7 @@ export default function Vote(props) {
           </div>
         </DialogActions>
       </Dialog>
-      <Snackbar
-        autoHideDuration={3000}
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-        open={log.open}
-        onClose={() => setLog({ open: false })}
-      >
+      <Snackbar autoHideDuration={3000} anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }} open={log.open} onClose={() => setLog({ open: false })}>
         <Alert onClose={() => setLog({ open: false })} severity={log.type}>
           {log.message}
         </Alert>

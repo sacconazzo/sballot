@@ -18,5 +18,5 @@ console.log('Deploy to production...')
 
 ftpDeploy
   .deploy(config)
-  .then((res) => console.log('finished:', res))
-  .catch((err) => console.log(err))
+  .then(res => console.log('finished:', res))
+  .catch(err => console.log(err))

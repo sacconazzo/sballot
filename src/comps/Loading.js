@@ -1,12 +1,12 @@
-import React from "react"
-import { makeStyles } from "@material-ui/core/styles"
-import Dialog from "@material-ui/core/Dialog"
-import DialogActions from "@material-ui/core/DialogActions"
-import DialogTitle from "@material-ui/core/DialogTitle"
-import Button from "@material-ui/core/Button"
-import LinearProgress from '@material-ui/core/LinearProgress';
+import React from 'react'
+import { makeStyles } from '@material-ui/core/styles'
+import Dialog from '@material-ui/core/Dialog'
+import DialogActions from '@material-ui/core/DialogActions'
+import DialogTitle from '@material-ui/core/DialogTitle'
+import Button from '@material-ui/core/Button'
+import LinearProgress from '@material-ui/core/LinearProgress'
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   spinner: {
     width: '100%',
     '& > * + *': {
@@ -14,11 +14,11 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   dialog: {
-    width: "auto",
+    width: 'auto',
   },
   wrapper: {
     margin: theme.spacing(1),
-    position: "relative",
+    position: 'relative',
   },
 }))
 
