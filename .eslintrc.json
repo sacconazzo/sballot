@@ -1,6 +1,6 @@
 {
-  "extends": ["eslint:recommended", "plugin:import/errors", "plugin:react/recommended", "plugin:jsx-a11y/recommended", "plugin:testing-library/react"],
-  "plugins": ["react", "import", "jsx-a11y", "testing-library"],
+  "extends": ["prettier", "eslint:recommended", "plugin:import/errors", "plugin:react/recommended", "plugin:jest-dom/recommended", "plugin:jsx-a11y/recommended", "plugin:testing-library/react"],
+  "plugins": ["prettier", "react", "import", "jsx-a11y", "testing-library", "jest-dom"],
   "rules": {
     "react/prop-types": 0,
     "indent": ["error", 2],
@@ -21,9 +21,10 @@
     }
   },
   "env": {
-    "es6": true,
-    "browser": true,
-    "node": true
+    "browser": true, // Enables browser globals like window and document
+    "amd": true, // Enables require() and define() as global variables as per the amd spec.
+    "node": true, // Enables Node.js global variables and Node.js scoping.
+    "es2021": true
   },
   "settings": {
     "react": {
