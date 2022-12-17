@@ -168,7 +168,7 @@ export default function AddAccount(props) {
           </form>
         </DialogContent>
         <DialogActions>
-          <Button autoFocus onClick={handleOnClose} color="primary">
+          <Button onClick={handleOnClose} color="primary">
             Cancel
           </Button>
           <div className={classes.wrapper}>

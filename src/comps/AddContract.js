@@ -159,7 +159,7 @@ export default function AddContract(props) {
           </form>
         </DialogContent>
         <DialogActions>
-          <Button autoFocus onClick={handleOnClose} color="primary">
+          <Button onClick={handleOnClose} color="primary">
             Cancel
           </Button>
           <div className={classes.wrapper}>

@@ -170,7 +170,7 @@ export default function Vote(props) {
           </form>
         </DialogContent>
         <DialogActions>
-          <Button autoFocus onClick={handleClose} color="primary">
+          <Button onClick={handleClose} color="primary">
             Cancel
           </Button>
           <div className={classes.wrapper}>

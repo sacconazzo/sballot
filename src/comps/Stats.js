@@ -54,6 +54,7 @@ export default function Stats(props) {
         if (row.right && !row.voted) freeVotes += 1
       })
       props.statsChanged(newStats, freeVotes)
+      // eslint-disable-next-line no-empty
     } catch (e) {}
   }
 
@@ -62,7 +63,6 @@ export default function Stats(props) {
     timeout = setTimeout(() => {
       setRefresh(refresh + 1)
     }, 7000)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [refresh])
 
   useEffect(() => {

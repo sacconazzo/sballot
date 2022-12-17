@@ -41,7 +41,7 @@ export default function Loading(props) {
           </div>
         </DialogTitle>
         <DialogActions>
-          <Button autoFocus onClick={handleClose} color="primary">
+          <Button onClick={handleClose} color="primary">
             Ok
           </Button>
         </DialogActions>

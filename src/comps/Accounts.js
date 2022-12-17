@@ -105,6 +105,7 @@ const Accounts = props => {
         if (row.right && !row.voted) freeVotes += 1
       })
       props.onChangeVotes(freeVotes)
+      // eslint-disable-next-line no-empty
     } catch (e) {}
     setAccounts(changeAccounts + 1)
   }
@@ -114,7 +115,6 @@ const Accounts = props => {
     timeout = setTimeout(() => {
       setRefresh(refresh + 1)
     }, 7000)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [refresh])
 
   useEffect(() => {
@@ -170,7 +170,7 @@ const Accounts = props => {
   return (
     <>
       {window.navigator.onLine && props.instanceOk && (
-        <Zoom in={true} style={{ transitionDelay: true ? '0ms' : '0ms' }}>
+        <Zoom in={true} style={{ transitionDelay: '0ms' }}>
           <Fab color="secondary" aria-label="add" onClick={handleClickOpen} className={classes.fab}>
             <AddIcon />
           </Fab>

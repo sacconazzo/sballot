@@ -94,12 +94,13 @@ export default function Contracts(props) {
         },
       })
       const cts = await response.json()
-      cts.map((row, id) => {
+      cts.map(row => {
         row.selected = row.id === props.ballot.id
         return row
       })
       contracts = cts
       localStorage.setItem('contracts', JSON.stringify(contracts))
+      // eslint-disable-next-line no-empty
     } catch (e) {}
     setContracts(changeContracts + 1)
   }
@@ -109,7 +110,6 @@ export default function Contracts(props) {
     timeout = setTimeout(() => {
       setRefresh(refresh + 1)
     }, 10000)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [refresh])
 
   useEffect(() => {
@@ -140,6 +140,7 @@ export default function Contracts(props) {
       })
       localStorage.setItem('contracts', JSON.stringify(contracts))
       setContracts(changeContracts + 1)
+      // eslint-disable-next-line no-empty
     } catch (e) {}
     setLoading(false)
   }
@@ -199,7 +200,7 @@ export default function Contracts(props) {
         </Grid>
       </Grid>
       {window.navigator.onLine && props.instanceOk && (
-        <Zoom in={true} style={{ transitionDelay: true ? '0ms' : '0ms' }}>
+        <Zoom in={true} style={{ transitionDelay: '0ms' }}>
           <Fab color="secondary" aria-label="add" onClick={handleClickAdd} className={classes.fab}>
             <AddIcon />
           </Fab>
