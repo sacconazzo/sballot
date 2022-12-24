@@ -237,8 +237,9 @@ export default function Dashboard() {
 
   const [loaded, setLoaded] = React.useState(0)
   const [instanceOk, setInstanceOk] = React.useState(false)
-  const setInstance = _bool => {
-    setInstanceOk(_bool)
+  const [loadingRate, setLoadingRate] = React.useState(0)
+  const setInstance = bool => {
+    setInstanceOk(bool)
   }
   const [refresh, setRefresh] = React.useState(0)
   React.useEffect(() => {
@@ -253,6 +254,7 @@ export default function Dashboard() {
           },
         })
         const json = await response.json()
+        if (response.status !== 200 && json.loading) setLoadingRate(json.loading)
         if (ballot !== json) {
           json.contendenti.sort((a, b) => b.voti - a.voti)
           ballot = json
@@ -298,7 +300,7 @@ export default function Dashboard() {
             <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
               sBallottaggio
             </Typography>
-            <IconVotes ballot={ballot} instanceOk={instanceOk} free={freeVotes} />
+            <IconVotes ballot={ballot} instanceStatus={{ instanceOk, loadingRate }} free={freeVotes} />
           </Toolbar>
         </AppBar>
         {!isMobile && (
@@ -372,7 +374,7 @@ function IconVotes(props) {
           User {logged.user}
         </Button>
       )}
-      {window.navigator.onLine && props.instanceOk && (
+      {window.navigator.onLine && props.instanceStatus.instanceOk && (
         <Zoom in={props.ballot.isOpen}>
           <Tooltip title="Send Your Votation" aria-label="add">
             <IconButton color="inherit" onClick={handleOpen}>
@@ -383,7 +385,7 @@ function IconVotes(props) {
           </Tooltip>
         </Zoom>
       )}
-      {window.navigator.onLine && !props.instanceOk && (
+      {window.navigator.onLine && !props.instanceStatus.instanceOk && (
         <Zoom in={true}>
           <Tooltip title={loadingMessage} aria-label="add">
             <div className={classes.spinner} onClick={() => setloading(true)}>
@@ -400,7 +402,7 @@ function IconVotes(props) {
         </Zoom>
       )}
       <Vote ballot={props.ballot} open={vote} onClose={() => setVote(false)} />
-      <Loading ballot={props.ballot} instanceOk={props.instanceOk} open={loading} message={loadingMessage} onClose={() => setloading(false)} />
+      <Loading ballot={props.ballot} instanceStatus={props.instanceStatus} open={loading} message={loadingMessage} onClose={() => setloading(false)} />
     </>
   )
 }

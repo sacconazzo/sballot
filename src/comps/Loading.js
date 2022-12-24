@@ -25,11 +25,13 @@ const useStyles = makeStyles(theme => ({
 export default function Loading(props) {
   const classes = useStyles()
 
+  const typeLoading = props.instanceStatus.loadingRate < 1 ? 'determinate' : 'indeterminate'
+
   const handleClose = () => {
     props.onClose()
   }
 
-  if (props.instanceOk) props.onClose()
+  if (props.instanceStatus.instanceOk) props.onClose()
 
   return (
     <>
@@ -37,7 +39,7 @@ export default function Loading(props) {
         <DialogTitle className={classes.dialog} id="form-dialog-title">
           <div className={classes.spinner}>
             <div className={classes.wrapper}>{props.message}</div>
-            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" variant={typeLoading} value={props.instanceStatus.loadingRate * 100} />
           </div>
         </DialogTitle>
         <DialogActions>
