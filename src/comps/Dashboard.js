@@ -237,7 +237,7 @@ export default function Dashboard() {
 
   const [loaded, setLoaded] = React.useState(0)
   const [instanceOk, setInstanceOk] = React.useState(false)
-  const [loadingRate, setLoadingRate] = React.useState(0)
+  const [loadingRate, setLoadingRate] = React.useState(1)
   const setInstance = bool => {
     setInstanceOk(bool)
   }
