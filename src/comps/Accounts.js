@@ -50,7 +50,7 @@ const useStyles = makeStyles(theme => ({
   table: {
     display: 'block',
     //height: "540px",
-    maxHeight: isMobile ? 'calc(100vh - 16.3rem)' : 'calc(100vh - 13.3rem)',
+    maxHeight: isMobile ? 'calc(100vh - 20.5rem)' : 'calc(100vh - 13.3rem)',
     overflowY: 'scroll',
   },
   rowH: {
