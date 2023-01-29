@@ -2,7 +2,8 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import React from 'react'
 import clsx from 'clsx'
-import { makeStyles, createMuiTheme } from '@material-ui/core/styles'
+import { Capacitor } from '@capacitor/core'
+import { makeStyles, createTheme } from '@material-ui/core/styles'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
 import { ThemeProvider } from '@material-ui/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
@@ -140,11 +141,11 @@ const useStyles = makeStyles(theme => ({
   appBarSpacer: theme.mixins.toolbar,
   content: {
     flexGrow: 1,
-    height: '100vh',
+    height: isMobile ? '90vh' : '100vh',
     overflow: 'auto',
   },
   container: {
-    paddingTop: isMobile ? theme.spacing(7) : theme.spacing(4),
+    paddingTop: Capacitor.getPlatform() === 'ios' ? theme.spacing(7) : theme.spacing(4),
     paddingBottom: isMobile ? theme.spacing(10) : theme.spacing(4),
   },
   paper: {
@@ -209,7 +210,7 @@ export default function Dashboard() {
   }
   const theme = React.useMemo(
     () =>
-      createMuiTheme({
+      createTheme({
         palette: {
           type: prefersDarkMode ? 'dark' : 'light',
         },

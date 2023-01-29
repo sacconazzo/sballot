@@ -47,9 +47,7 @@ export default function Details(props) {
         <Link color="primary" href="https://cakeshop.giona.tech" target="_blank">
           Cakeshop
         </Link>
-        <Typography component="body1" color="primary">
-          {' // '}
-        </Typography>
+        <Typography color="primary">{' // '}</Typography>
         <Link color="primary" href="https://quorumscan.giona.tech" target="_blank">
           BlockChain Explorer
         </Link>
