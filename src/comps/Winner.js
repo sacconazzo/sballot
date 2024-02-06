@@ -14,10 +14,10 @@ export default function Winners(props) {
   return (
     <React.Fragment>
       <Title>{props.ballot.isOpen ? 'Winning' : 'Winner'}</Title>
-      <Typography color="textSecondary" variant="h4" className={classes.depositContext}>
+      <Typography color="textSecondary" variant="h6" className={classes.depositContext}>
         {props.ballot.title}
       </Typography>
-      <Typography component="p" variant="h4">
+      <Typography component="p" variant="h6">
         {props.ballot.vincente}
       </Typography>
       <Typography color="textSecondary" className={classes.depositContext}>
