@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import FormControl from '@material-ui/core/FormControl'
 import CircularProgress from '@material-ui/core/CircularProgress'
@@ -54,10 +54,14 @@ function Alert(props) {
 export default function AddContract(props) {
   const classes = useStyles()
 
-  const [loader, setLoader] = React.useState(false)
-  const [log, setLog] = React.useState({ open: false })
-  const [contendenti, setForm] = React.useState(['', ''])
-  const [title, setTitle] = React.useState('')
+  const [loader, setLoader] = useState(false)
+  const [log, setLog] = useState({ open: false })
+  const [contendenti, setForm] = useState([
+    [Math.random(), ''],
+    [Math.random(), ''],
+  ])
+  const [title, setTitle] = useState('')
+  const [valid, setValid] = useState(false)
 
   const create = async () => {
     setLoader(true)
@@ -77,7 +81,11 @@ export default function AddContract(props) {
       })
       const json = await response.json()
       setLog({ open: true, message: 'Contract created successfully', type: 'success' })
-      setForm(['', ''])
+      setForm([
+        [Math.random(), ''],
+        [Math.random(), ''],
+      ])
+      setValid(false)
       props.onCreate(json)
     } catch (e) {
       setLog({ open: true, message: 'Creation Error', type: 'error' })
@@ -94,13 +102,12 @@ export default function AddContract(props) {
   }
 
   const handleAdd = () => {
-    contendenti.push('')
-    setForm(contendenti)
+    setForm([...contendenti, [Math.random(), '']])
   }
 
   const handleRemove = id => {
     contendenti.splice(id, 1)
-    setForm(contendenti)
+    setForm([...contendenti])
   }
 
   const checkEnter = e => {
@@ -109,11 +116,11 @@ export default function AddContract(props) {
     }
   }
 
-  const valid = () => {
+  const isValid = () => {
     if (!title) return false
     if (contendenti.length === 0) return false
     for (let i = 0; i < contendenti.length; i++) {
-      if (!contendenti[i]) return false
+      if (!contendenti[i][1]) return false
     }
     return true
   }
@@ -130,7 +137,10 @@ export default function AddContract(props) {
                 onKeyDown={checkEnter}
                 value={title}
                 autoComplete="new-password"
-                onChange={e => setTitle(e.target.value)}
+                onChange={e => {
+                  setTitle(e.target.value)
+                  setValid(!loader && isValid())
+                }}
                 label="Title"
                 endAdornment={
                   <InputAdornment position="end">
@@ -143,16 +153,17 @@ export default function AddContract(props) {
             </FormControl>
             {contendenti.map((row, id) => (
               <Option
-                key={id}
+                key={row[0].toString()}
                 id={id}
-                row={row}
+                row={row[1]}
                 classes={classes}
                 onClick={() => handleRemove(id)}
                 checkEnter={checkEnter}
                 onMouseDown={handleMouseDown}
                 onChange={val => {
-                  contendenti[id] = val
+                  contendenti[id][1] = val
                   setForm(contendenti)
+                  setValid(!loader && isValid())
                 }}
               />
             ))}
@@ -163,7 +174,7 @@ export default function AddContract(props) {
             Cancel
           </Button>
           <div className={classes.wrapper}>
-            <Button onClick={create} disabled={loader || !valid()} variant="contained" color="primary">
+            <Button onClick={create} disabled={!valid} variant="contained" color="primary">
               Create
             </Button>
             {loader && <CircularProgress size={24} className={classes.buttonProgress} />}
@@ -180,7 +191,7 @@ export default function AddContract(props) {
 }
 
 const Option = props => {
-  const [value, setValue] = React.useState('')
+  const [value, setValue] = useState('')
   return (
     <FormControl className={props.classes.formList}>
       <InputLabel htmlFor="standard-adornment-password">Option {props.id + 1}</InputLabel>
@@ -188,7 +199,6 @@ const Option = props => {
         onKeyDown={props.checkEnter}
         label={'Option' + (props.id + 1)}
         value={value}
-        autoComplete="new-password"
         type="text"
         onChange={e => {
           const val = e.target.value.replace(/[^\w\s]/gi, '').replace(/([0-9])/gi, '')
