@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import FormControl from '@material-ui/core/FormControl'
 import CircularProgress from '@material-ui/core/CircularProgress'
@@ -125,6 +125,10 @@ export default function AddContract(props) {
     return true
   }
 
+  useEffect(() => {
+    setValid(!loader && isValid())
+  }, [title, contendenti])
+
   return (
     <>
       <Dialog fullWidth open={props.open} onClose={handleOnClose} aria-labelledby="form-dialog-title">
@@ -137,10 +141,7 @@ export default function AddContract(props) {
                 onKeyDown={checkEnter}
                 value={title}
                 autoComplete="new-password"
-                onChange={e => {
-                  setTitle(e.target.value)
-                  setValid(!loader && isValid())
-                }}
+                onChange={e => setTitle(e.target.value)}
                 label="Title"
                 endAdornment={
                   <InputAdornment position="end">
