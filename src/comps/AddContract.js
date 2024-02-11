@@ -191,7 +191,7 @@ export default function AddContract(props) {
 }
 
 const Option = props => {
-  const [value, setValue] = useState('')
+  const [value, setValue] = useState(props.row)
   return (
     <FormControl className={props.classes.formList}>
       <InputLabel htmlFor="standard-adornment-password">Option {props.id + 1}</InputLabel>
