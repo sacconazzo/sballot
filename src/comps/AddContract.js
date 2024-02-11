@@ -67,7 +67,7 @@ export default function AddContract(props) {
     setLoader(true)
     const newCnt = {
       title: title,
-      contendenti: contendenti,
+      contendenti: contendenti.map(c => c[1]),
     }
     try {
       const response = await fetch('https://api.giona.tech/quorum/ballot/cnt/add', {
