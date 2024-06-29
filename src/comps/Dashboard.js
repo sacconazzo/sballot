@@ -364,7 +364,7 @@ function IconVotes(props) {
   const dispatch = useDispatch()
   const [vote, setVote] = React.useState(false)
   const [loading, setloading] = React.useState(ballot.title === '...')
-  const loadingMessage = 'Blockchain node is starting... please wait'
+  const loadingMessage = 'Blockchain node is starting... please wait (about 5 min)'
   const handleOpen = () => {
     setVote(true)
   }
