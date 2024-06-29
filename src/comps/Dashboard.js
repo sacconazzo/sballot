@@ -179,6 +179,15 @@ let user = {
 }
 const login = async () => {
   if (!user.logged) {
+    const check = await fetch('https://api.giona.tech/quorum/ballot', {
+      method: 'GET',
+      credentials: 'include',
+    })
+    if (check.status !== 401) {
+      user.logged = true
+      return
+    }
+
     await fetch('https://api.giona.tech/login', {
       method: 'POST',
       credentials: 'include',
