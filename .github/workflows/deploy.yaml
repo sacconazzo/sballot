@@ -35,3 +35,34 @@ jobs:
 
       - name: Deploy to Google Cloud Storage
         run: gsutil -m rsync -r build gs://${{ vars.BUCKET_NAME }}
+
+  tag-new-version:
+    name: Tag new version
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Read the version from package.json
+        id: get_version
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const fs = require('fs');
+            const packageJson = fs.readFileSync('./package.json', 'utf8');
+            const version = JSON.parse(packageJson).version;
+            core.setOutput('version', version);
+
+      - name: Check if tag exists
+        id: check_tag
+        uses: mukunku/tag-exists-action@v1.6.0
+        with:
+          tag: v${{ steps.get_version.outputs.version }}
+
+      - name: Create new tag
+        if: steps.check_tag.outputs.exists == 'false'
+        uses: rickstaa/action-create-tag@v1.7
+        with:
+          tag: v${{ steps.get_version.outputs.version }}
+          message: v${{ steps.get_version.outputs.version }}
