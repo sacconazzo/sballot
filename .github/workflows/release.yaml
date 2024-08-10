@@ -1,9 +1,6 @@
 name: Check New Release
 
-on:
-  push:
-    tags:
-      - 'v[0-9]*'
+on: create
 
 permissions:
   contents: write
