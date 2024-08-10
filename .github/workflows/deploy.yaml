@@ -66,3 +66,19 @@ jobs:
         with:
           tag: v${{ steps.get_version.outputs.version }}
           message: v${{ steps.get_version.outputs.version }}
+
+  release:
+    name: Release on created tag
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Create release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          tag: ${{ github.ref_name }}
+        run: |
+          gh release list --repo="$GITHUB_REPOSITORY" \
+          | grep -q "$tag" && echo "Release $tag already exists" \
+          || gh release create "$tag" \
+              --repo="$GITHUB_REPOSITORY" \
+              --title="$Release ${tag}" \
+              --generate-notes
