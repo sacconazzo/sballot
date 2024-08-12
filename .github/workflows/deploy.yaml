@@ -34,7 +34,7 @@ jobs:
         uses: google-github-actions/setup-gcloud@v1
 
       - name: Deploy to Google Cloud Storage
-        run: gsutil -m rsync -r build gs://${{ vars.BUCKET_NAME }}
+        run: gsutil -m rsync -r -d build gs://${{ vars.BUCKET_NAME }}
 
   tag-new-version:
     name: Tag new version
