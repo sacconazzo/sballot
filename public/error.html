@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Resource Unavailable - Web Application</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        background-color: #f0f0f0;
+        color: #333;
+      }
+
+      .container {
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      h1 {
+        color: #dc3545; /* Red to indicate error */
+        margin-bottom: 20px;
+      }
+
+      p {
+        margin-bottom: 10px;
+      }
+
+      button {
+        background-color: #007bff; /* Primary blue */
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 3px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Resource Unavailable</h1>
+      <p>We apologize, but the requested resource is currently unavailable.</p>
+      <p>This could be due to:</p>
+      <ul>
+        <li>An error in the entered address</li>
+        <li>The resource has been moved or removed</li>
+        <li>A temporary problem on the server</li>
+      </ul>
+      <p>Please check the address and try again later. If the problem persists, contact technical support.</p>
+      <button onclick="history.back()">Go Back</button>
+    </div>
+  </body>
+</html>
